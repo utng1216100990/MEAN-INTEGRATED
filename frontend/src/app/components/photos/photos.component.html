@@ -1,0 +1,78 @@
+<div class="row">
+  <mat-tab-group mat-align-tabs="center">
+
+    <mat-tab label="Registro">
+      <div class="col s12 m12 l6 offset-l3">
+        <div class="card">
+          <div class="card-action white-text" id="card_back">
+            <span class="card-title"><b>Fotos</b></span>
+          </div>
+          <form #photoForm="ngForm" (ngSubmit)="addPhoto(title, description, imageURL)">
+            <div class="card-content">
+              <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="photoService.selectedPhoto._id">
+              <div class="row">
+                <div class="input-field col s12">
+                  <input type="text" name="title" #title="ngModel" id="title"
+                    [(ngModel)]="photoService.selectedPhoto.title" placeholder="Título" required>
+                </div>
+                <div class="input-field col s12">
+                  <textarea name="description" #description="ngModel"
+                    [(ngModel)]="photoService.selectedPhoto.description" class="materialize-textarea"
+                    placeholder="Descripción" required></textarea>
+                </div>
+                <div class="file-field col s12">
+                  <div class="btn">
+                    <span>Archivo</span>
+                    <input type="file" name="imageURL" #imageURL="ngModel"
+                      [(ngModel)]="photoService.selectedPhoto.imageURL" accept="image/*"
+                      (change)="handleFileInput($event.target.files)">
+                  </div>
+                  <div class="file-path-wrapper">
+                    <input class="file-path validate" type="text">
+                  </div>
+                </div>
+              </div>
+              <!-- SHOW IMAGE -->
+              <img [src]="thumbnail" class="center responsive-img">
+            </div>
+            <div class="card-action">
+              <button mat-raised-button color="accent" class="btn"
+                [disabled]="imageURL.value=='' || !photoForm.valid">Save</button>
+              <button mat-raised-button color="warn" class="btn right" (click)="resetForm(photoForm)">Cancel</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </mat-tab>
+
+    <mat-tab label="Lista">
+      <div class="col s12 m12 l12 xl12">
+        <ng-template [ngIf]="photoService.photos.length > 0">
+          <div class="row">
+            <div *ngFor="let photo of photoService.photos | paginate: {itemsPerPage: 6, currentPage: p}">
+              <div class="col s12 m12 l4">
+                <div class="card">
+                  <div class="card-image">
+                    <img src="{{ photo.imageURL }}">
+                    <h1 class="card-title mat-h1"><b>{{ photo.title }}</b></h1>
+                  </div>
+                  <div class="card-content">
+                    <p>{{ photo.description }}</p>
+                    <a mat-button href="{{ photo.imageURL }}" target="_blanck">View picture</a>
+                  </div>
+                  <div class="card-action">
+                    <a mat-raised-button (click)="editPhoto(photo)" class="black-text" disabled>Edit</a>
+                    <a mat-raised-button (click)="deletePhoto(photo._id)" color="warn" class="btn right">Delete</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <pagination-controls class="my-pagination mat-body-1" (pageChange)="p = $event"></pagination-controls>
+        </ng-template>
+        <p class="info-text mat-body-1" *ngIf="photoService.photos.length <= 0">No photos added yet!</p>
+      </div>
+    </mat-tab>
+
+  </mat-tab-group>
+</div>

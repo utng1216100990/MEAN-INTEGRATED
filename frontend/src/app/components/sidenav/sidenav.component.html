@@ -1,0 +1,54 @@
+<mat-sidenav-container class="app-sidenav-container">
+
+  <mat-sidenav #sidenav class="app-sidenav" [opened]="!isScreenSmall()" [mode]="isScreenSmall() ? 'over' : 'side'">
+    <mat-list role="list">
+      <h3 mat-subheader>Catálogos</h3>
+      <a routerLink="/photos">
+        <mat-list-item routerLinkActive="active current" role="listitem">
+          <mat-icon mat-list-icon>photo</mat-icon>
+          <h4 mat-line>Fotos</h4>
+        </mat-list-item>
+      </a>
+      <a routerLink="/internal">
+        <mat-list-item routerLinkActive="active current" role="listitem">
+          <mat-icon mat-list-icon>note</mat-icon>
+          <h4 mat-line>Gastos Internos</h4>
+        </mat-list-item>
+      </a>
+      <a routerLink="/suppliers">
+        <mat-list-item routerLinkActive="active current" role="listitem">
+          <mat-icon mat-list-icon>local_shipping</mat-icon>
+          <h4 mat-line>Proveedores</h4>
+        </mat-list-item>
+      </a>
+      <a routerLink="/menu">
+        <mat-list-item routerLinkActive="active current" role="listitem">
+          <mat-icon mat-list-icon>restaurant_menu</mat-icon>
+          <h4 mat-line>Menu</h4>
+        </mat-list-item>
+      </a>
+      <!-- DIVIDER HERE -->
+      <mat-divider></mat-divider>
+      <h3 mat-subheader>Cuenta</h3>
+      <a routerLink="/profile">
+        <mat-list-item routerLinkActive="active current" role="listitem">
+          <mat-icon mat-list-icon>account_circle</mat-icon>
+          <h4 mat-line>Perfil</h4>
+        </mat-list-item>
+      </a>
+      <a (click)="onLogout()">
+        <mat-list-item routerLinkActive="active current" role="listitem">
+          <mat-icon mat-list-icon>keyboard_return</mat-icon>
+          <h4 mat-line>Cerrar sesión</h4>
+        </mat-list-item>
+      </a>
+    </mat-list>
+  </mat-sidenav>
+
+  <div class="app-sidenav-content">
+    <div class="wrapper">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+
+</mat-sidenav-container>

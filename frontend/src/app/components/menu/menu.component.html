@@ -1,0 +1,87 @@
+<div class="row">
+  <mat-tab-group mat-align-tabs="center">
+
+    <mat-tab label="Registro">
+      <div class="col s12 m12 l6 offset-l3">
+        <div class="card">
+          <div class="card-action white-text" id="card_back">
+            <span class="card-title"><b>Menus</b></span>
+          </div>
+          <form #menuForm="ngForm" (ngSubmit)="addMenu(menuForm)">
+            <div class="card-content">
+              <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="menuService.selectedMenu._id">
+              <div class="row">
+                <label>Tipo de alimento/bebida</label>
+                <select class="browser-default" name="type" #type="ngModel" [(ngModel)]="menuService.selectedMenu.type">
+                  <option value="" disabled selected>Elige una opción</option>
+                  <option value="Bebida">Bebida</option>
+                  <option value="Comida fria">Comida fria</option>
+                  <option value="Comida caliente">Comida caliente</option>
+                </select>
+                <div class="input-field col s12">
+                  <input type="text" name="name" #name="ngModel" [(ngModel)]="menuService.selectedMenu.name"
+                    placeholder="Ingrese nombre">
+                </div>
+                <div class="input-field col s12">
+                  <textarea name="description" #description="ngModel" [(ngModel)]="menuService.selectedMenu.description"
+                    class="materialize-textarea" placeholder="Escriba una descripcion"></textarea>
+                </div>
+                <div class="input-field col s12">
+                  <input type="number" name="price" #price="ngModel" [(ngModel)]="menuService.selectedMenu.price"
+                    placeholder="Ingrese precio">
+                </div>
+                <div class="input-field col s12">
+                  <input type="text" name="image" #image="ngModel" [(ngModel)]="menuService.selectedMenu.image"
+                    placeholder="Imagen">
+                </div>
+              </div>
+            </div>
+            <div class="card-action">
+              <button mat-raised-button color="accent" class="btn">
+                Save
+              </button>
+              <button mat-raised-button color="warn" class="btn right" (click)="resetForm(menuForm)">
+                Cancel
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </mat-tab>
+
+    <mat-tab label="Lista">
+      <div class="col s12 m12 l12 xl12">
+        <ng-template [ngIf]="menuService.menus.length > 0">
+          <table class="card responsive-table">
+            <thead>
+              <tr>
+                <th>Tipo de alimento</th>
+                <th>Nombre</th>
+                <th>Precio</th>
+                <th>Operations</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let menu of menuService.menus | paginate: {itemsPerPage: 5, currentPage: p}">
+                <td>{{ menu.type }}</td>
+                <td>{{ menu.name }}</td>
+                <td>{{ menu.price | currency}}</td>
+                <td>
+                  <a (click)="editMenu(menu)">
+                    <i id="icon-cursor" class="material-icons">edit</i>
+                  </a>
+                  <a (click)="deleteMenu(menu._id)">
+                    <i id="icon-cursor" class="material-icons">delete</i>
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <pagination-controls class="my-pagination mat-body-1" (pageChange)="p = $event"></pagination-controls>
+        </ng-template>
+        <p class="info-text mat-body-1" *ngIf="menuService.menus.length <= 0">No menus added yet!</p>
+      </div>
+    </mat-tab>
+
+  </mat-tab-group>
+</div>

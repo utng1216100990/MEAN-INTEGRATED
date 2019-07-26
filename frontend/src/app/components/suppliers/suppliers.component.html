@@ -1,0 +1,98 @@
+<div class="row">
+  <mat-tab-group mat-align-tabs="center">
+
+    <mat-tab label="Registro" *ngIf="step === 1" (opened)="setStep(1)">
+      <div class="col s12 m12 l6 offset-l3">
+        <div class="card">
+          <div class="card-action white-text" id="card_back">
+            <span class="card-title"><b>Proveedores</b></span>
+          </div>
+
+          <form #supplierForm="ngForm" (ngSubmit)="addSupplier(supplierForm); prevStep()">
+            <div class="card-content">
+              <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="supplierService.selectedSupplier._id">
+              <div class="row">
+                <div class="input-field col s12">
+                  <input type="text" name="companyName" #companyName="ngModel"
+                    [(ngModel)]="supplierService.selectedSupplier.companyName" placeholder="Nombre de la empresa">
+                </div>
+                <div class="input-field col s12">
+                  <input type="text" name="contactName" #contactName="ngModel"
+                    [(ngModel)]="supplierService.selectedSupplier.contactName" placeholder="Nombre del contacto">
+                </div>
+                <div class="input-field col s12">
+                  <input type="text" name="address" #address="ngModel"
+                    [(ngModel)]="supplierService.selectedSupplier.address" placeholder="Dirección">
+                </div>
+                <div class="input-field col s12">
+                  <input type="text" name="city" #city="ngModel" [(ngModel)]="supplierService.selectedSupplier.city"
+                    placeholder="Ciudad">
+                </div>
+                <div class="input-field col s12">
+                  <input type="number" name="phone" #phone="ngModel"
+                    [(ngModel)]="supplierService.selectedSupplier.phone" placeholder="Telefono">
+                </div>
+              </div>
+            </div>
+            <div class="card-action">
+              <button mat-raised-button color="accent" class="btn">
+                Save
+              </button>
+              <button mat-raised-button color="warn" class="btn right" (click)="resetForm(supplierForm)">
+                Cancel
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </mat-tab>
+
+    <mat-tab label="Lista" *ngIf="step === 0" (opened)="setStep(0)">
+      <div class="col s12 m12 l12 xl12">
+        <ng-template [ngIf]="supplierService.suppliers.length > 0">
+          <div class="search-div">
+            <button mat-raised-button color="primary" (click)="nextStep()">
+              <mat-icon>add</mat-icon>
+              Nuevo
+            </button>
+            <div class="search-form-field">
+              <input type="text" name="filterSupplier" placeholder="Buscar..." [(ngModel)]="filterSupplier">
+            </div>
+          </div>
+          <table class="card responsive-table highlight">
+            <thead>
+              <th>Compañia</th>
+              <th>Contacto</th>
+              <th>Telefono</th>
+              <th>Operaciones</th>
+            </thead>
+            <tbody>
+              <tr *ngFor="let supplier of supplierService.suppliers | filterSupplier:filterSupplier 
+              | paginate: {itemsPerPage: 10, currentPage: p}">
+                <td>{{ supplier.companyName }}</td>
+                <td>{{ supplier.contactName }}</td>
+                <td>{{ supplier.phone }}</td>
+                <td>
+                  <a (click)="editSupplier(supplier); nextStep()">
+                    <i id="icon-cursor" class="material-icons">edit</i>
+                  </a>
+                  <a (click)="deleteSupplier(supplier._id)">
+                    <i id="icon-cursor" class="material-icons">delete</i>
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <pagination-controls class="my-pagination mat-body-1" (pageChange)="p = $event"></pagination-controls>
+        </ng-template>
+
+        <ng-template [ngIf]="supplierService.suppliers.length <= 0">
+          <p class="info-text mat-body-1">No hay Proveedores agregados
+            todavía!</p>
+          <button mat-raised-button color="primary" (click)="nextStep()">Crear nuevo proveedor</button>
+        </ng-template>
+      </div>
+    </mat-tab>
+
+  </mat-tab-group>
+</div>
