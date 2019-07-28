@@ -30,6 +30,7 @@ import { ForgotPasswordComponent } from './components/user/forgot-password/forgo
 import { EditProfileComponent } from './components/user-profile/edit-profile/edit-profile.component';
 import { FilterSupplierPipe } from './pipes/filter-supplier.pipe';
 import { ResetPasswordComponent } from './components/user/reset-password/reset-password.component';
+import { OrderComponent } from './components/order/order.component';
 
 @NgModule({
     declarations: [
@@ -48,7 +49,8 @@ import { ResetPasswordComponent } from './components/user/reset-password/reset-p
         ForgotPasswordComponent,
         EditProfileComponent,
         FilterSupplierPipe,
-        ResetPasswordComponent
+        ResetPasswordComponent,
+        OrderComponent
     ],
     imports: [
         BrowserModule,

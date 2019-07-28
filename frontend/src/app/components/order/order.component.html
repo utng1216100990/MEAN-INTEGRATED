@@ -1,0 +1,116 @@
+<div class="row">
+    <mat-tab-group mat-align-tabs="center">
+
+      <mat-tab label="Menú">
+        <div class="col s12 m12 l12 xl12">
+          <ng-template [ngIf]="orderService.orders.length > 0">
+            <table class="card responsive-table">
+              <thead>
+                <tr>
+                  <th>Tipo de alimento</th>
+                  <th>Nombre</th>
+                  <th>Precio</th>
+                  <th>Operaciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                  <tr *ngFor="let order of orderService.orders | paginate: {itemsPerPage: 10, currentPage: p}">
+                    <td>{{ order.type }}</td>
+                    <td>{{ order.name }}</td>
+                    <td>{{ order.price | currency}}</td>
+                    <td>
+                      <a>
+                        <i id="icon-cursor" class="material-icons">visibility</i>
+                      </a>
+                    </td>
+                  </tr>
+                </tbody>
+            </table>
+            <pagination-controls class="my-pagination mat-body-1" (pageChange)="p = $event"></pagination-controls>
+          </ng-template>
+          <p class="info-text mat-body-1" *ngIf="orderService.orders.length <= 0">No orders added yet!</p>
+        </div>
+      </mat-tab>
+
+      <mat-tab label="Ordenar">
+          <div class="col s12 m12 l6 offset-l3">
+            <div class="card">
+              <div class="card-action white-text" id="card_back">
+                <span class="card-title"><b>Ordenes</b></span>
+              </div>
+              <form #orderForm="ngForm" (ngSubmit)="addOrder(orderForm)">
+                <div class="card-content">
+                  <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="orderService.selectedOrder._id">
+                  <div class="row">
+                    <label>Tipo de alimento/bebida</label>
+                    <select class="browser-default" name="type" #type="ngModel" [(ngModel)]="orderService.selectedOrder.type">
+                      <option value="" disabled selected>Elige una opción</option>
+                      <option value="Bebida">Bebida</option>
+                      <option value="Comida fria">Comida fria</option>
+                      <option value="Comida caliente">Comida caliente</option>
+                    </select>
+                    <div class="input-field col s12">
+                      <input type="text" name="name" #name="ngModel" [(ngModel)]="orderService.selectedOrder.name"
+                        placeholder="Ingrese nombre">
+                    </div>
+                    <div class="input-field col s12">
+                      <input type="number" name="price" #price="ngModel" [(ngModel)]="orderService.selectedOrder.price"
+                        placeholder="Ingrese precio">
+                    </div>
+                    <div class="input-field col s12">
+                      <input type="number" name="quantity" #quantity="ngModel" [(ngModel)]="orderService.selectedOrder.quantity"
+                        placeholder="Cantidad">
+                    </div>
+                  </div>
+                </div>
+                <div class="card-action">
+                  <button mat-raised-button color="accent" class="btn">
+                    Save
+                  </button>
+                  <button mat-raised-button color="primary" class="btn right" (click)="resetForm(orderForm)">
+                    Nueva orden
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </mat-tab>
+
+      <mat-tab label="Confirmar orden">
+          <div class="col s12 m12 l12 xl12">
+            <ng-template [ngIf]="orderService.orders.length > 0">
+              <table class="card responsive-table">
+                <thead>
+                  <tr>
+                    <th>Tipo de alimento</th>
+                    <th>Nombre</th>
+                    <th>Precio</th>
+                    <th>Cantidad</th>
+                    <th>Operations</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let order of orderService.orders | paginate: {itemsPerPage: 10, currentPage: p}">
+                      <td>{{ order.type }}</td>
+                      <td>{{ order.name }}</td>
+                      <td>{{ order.price | currency}}</td>
+                      <td>{{ order.quantity }}</td>
+                      <td>
+                        <a (click)="editOrder(order)">
+                          <i id="icon-cursor" class="material-icons">edit</i>
+                        </a>
+                        <a (click)="deleteOrder(order._id)">
+                          <i id="icon-cursor" class="material-icons">delete</i>
+                        </a>
+                      </td>
+                    </tr>
+                  </tbody>
+              </table>
+              <pagination-controls class="my-pagination mat-body-1" (pageChange)="p = $event"></pagination-controls>
+            </ng-template>
+            <p class="info-text mat-body-1" *ngIf="orderService.orders.length <= 0">No orders added yet!</p>
+          </div>
+        </mat-tab>
+  
+    </mat-tab-group>
+  </div>

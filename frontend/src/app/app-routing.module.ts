@@ -7,6 +7,7 @@ import { HomeComponent } from './components/home/home.component';
 import { SuppliersComponent } from './components/suppliers/suppliers.component';
 import { InternalComponent } from './components/internal/internal.component';
 import { MenuComponent } from './components/menu/menu.component';
+import { OrderComponent } from './components/order/order.component';
 import { SignUpComponent } from './components/user/sign-up/sign-up.component';
 import { UserComponent } from './components/user/user.component';
 import { SignInComponent } from './components/user/sign-in/sign-in.component';
@@ -37,6 +38,7 @@ const routes: Routes = [
   { path: 'suppliers', component: SuppliersComponent, canActivate: [AuthGuard] },
   { path: 'internal', component: InternalComponent, canActivate: [AuthGuard] },
   { path: 'menu', component: MenuComponent, canActivate: [AuthGuard] },
+  { path: 'order', component: OrderComponent, canActivate: [AuthGuard] },
   { path: 'home', component: HomeComponent },
   { path: 'edit', component: EditProfileComponent },
   { path: 'reset/:token', component: ResetPasswordComponent },
