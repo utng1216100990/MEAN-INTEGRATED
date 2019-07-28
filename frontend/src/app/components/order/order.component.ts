@@ -10,6 +10,7 @@ declare var M: any;
   styleUrls: ['./order.component.css']
 })
 export class OrderComponent implements OnInit {
+  filterOrder = '';
   p: number = 1;
 
   constructor(public orderService: OrderService) { }

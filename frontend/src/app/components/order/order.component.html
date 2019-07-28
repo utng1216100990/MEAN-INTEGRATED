@@ -78,6 +78,9 @@
 
       <mat-tab label="Confirmar orden">
           <div class="col s12 m12 l12 xl12">
+            <div class="search-form-field">
+                <input type="text" name="filterOrder" placeholder="Buscar..." [(ngModel)]="filterOrder">
+            </div>
             <ng-template [ngIf]="orderService.orders.length > 0">
               <table class="card responsive-table">
                 <thead>
@@ -90,7 +93,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let order of orderService.orders | paginate: {itemsPerPage: 10, currentPage: p}">
+                    <tr *ngFor="let order of orderService.orders | filterOrder:filterOrder | paginate: {itemsPerPage: 10, currentPage: p}">
                       <td>{{ order.type }}</td>
                       <td>{{ order.name }}</td>
                       <td>{{ order.price | currency}}</td>

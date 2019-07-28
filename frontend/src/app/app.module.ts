@@ -24,6 +24,7 @@ import { UserService } from './services/user.service';
 import { AuthGuard } from './auth/auth.guard';
 import { AuthInterceptor } from './auth/auth.interceptor';
 import { FilterInternalPipe } from './pipes/filter-internal.pipe';
+import { FilterOrderPipe } from './pipes/filter-order.pipe';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { ForgotPasswordComponent } from './components/user/forgot-password/forgot-password.component';
@@ -50,7 +51,8 @@ import { OrderComponent } from './components/order/order.component';
         EditProfileComponent,
         FilterSupplierPipe,
         ResetPasswordComponent,
-        OrderComponent
+        OrderComponent,
+        FilterOrderPipe
     ],
     imports: [
         BrowserModule,
