@@ -3,22 +3,22 @@
   <mat-sidenav #sidenav class="app-sidenav" [opened]="!isScreenSmall()" [mode]="isScreenSmall() ? 'over' : 'side'">
     <mat-list role="list">
       <h3 mat-subheader>Catálogos</h3>
-      <a routerLink="/photos">
+      <a routerLink="/order">
         <mat-list-item routerLinkActive="active current" role="listitem">
-          <mat-icon mat-list-icon>photo</mat-icon>
-          <h4 mat-line>Fotos</h4>
+          <mat-icon mat-list-icon>domain</mat-icon>
+          <h4 mat-line>Orden</h4>
         </mat-list-item>
       </a>
-      <a routerLink="/internal">
+      <a routerLink="/external">
         <mat-list-item routerLinkActive="active current" role="listitem">
-          <mat-icon mat-list-icon>note</mat-icon>
-          <h4 mat-line>Gastos Internos</h4>
+          <mat-icon mat-list-icon>account_balance_wallet</mat-icon>
+          <h4 mat-line>Gastos Externos</h4>
         </mat-list-item>
       </a>
-      <a routerLink="/suppliers">
+      <a routerLink="/invoice">
         <mat-list-item routerLinkActive="active current" role="listitem">
-          <mat-icon mat-list-icon>local_shipping</mat-icon>
-          <h4 mat-line>Proveedores</h4>
+          <mat-icon mat-list-icon>widgets</mat-icon>
+          <h4 mat-line>Facturas</h4>
         </mat-list-item>
       </a>
       <a routerLink="/menu">
