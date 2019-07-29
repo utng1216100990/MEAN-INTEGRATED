@@ -19,10 +19,6 @@
                 <mat-icon>menu</mat-icon>
               </a>
               <mat-menu #menu="matMenu" xPosition="before">
-                <a routerLink="/menu" mat-menu-item>
-                  <mat-icon>restaurant_menu</mat-icon>
-                  <span>Menu</span>
-                </a>
                 <a routerLink="/order" mat-menu-item>
                   <mat-icon>domain</mat-icon>
                   <span>Orden</span>
@@ -31,18 +27,9 @@
                   <mat-icon>account_balance_wallet</mat-icon>
                   <span>Gastos externos</span>
                 </a>
-                <mat-divider></mat-divider>
-                <button mat-menu-item disabled>
-                  <mat-icon>help</mat-icon>
-                  <span>Ayuda</span>
-                </button>
-                <button mat-menu-item disabled>
-                  <mat-icon>settings</mat-icon>
-                  <span>Configuracion</span>
-                </button>
-                <a (click)="onLogout()" mat-menu-item>
-                  <mat-icon>keyboard_return</mat-icon>
-                  <span>Cerrar sesión</span>
+                <a routerLink="/invoice" mat-menu-item>
+                  <mat-icon>widgets</mat-icon>
+                  <span>Facturas</span>
                 </a>
               </mat-menu>
             </li>

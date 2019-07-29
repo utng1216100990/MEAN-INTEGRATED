@@ -9,6 +9,7 @@ import { InternalComponent } from './components/internal/internal.component';
 import { ExternalComponent } from './components/external/external.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { OrderComponent } from './components/order/order.component';
+import { InvoiceComponent } from './components/invoice/invoice.component';
 import { SignUpComponent } from './components/user/sign-up/sign-up.component';
 import { UserComponent } from './components/user/user.component';
 import { SignInComponent } from './components/user/sign-in/sign-in.component';
@@ -41,6 +42,7 @@ const routes: Routes = [
   { path: 'external', component: ExternalComponent, canActivate: [AuthGuard] },
   { path: 'menu', component: MenuComponent, canActivate: [AuthGuard] },
   { path: 'order', component: OrderComponent, canActivate: [AuthGuard] },
+  { path: 'invoice', component: InvoiceComponent, canActivate: [AuthGuard] },
   { path: 'home', component: HomeComponent },
   { path: 'edit', component: EditProfileComponent },
   { path: 'reset/:token', component: ResetPasswordComponent },

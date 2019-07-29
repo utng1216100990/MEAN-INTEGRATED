@@ -93,7 +93,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let order of orderService.orders | filterOrder:filterOrder | paginate: {itemsPerPage: 10, currentPage: p}">
+                    <tr *ngFor="let order of orderService.orders | filterOrder:filterOrder | paginate: {itemsPerPage: 7, currentPage: p}">
                       <td>{{ order.type }}</td>
                       <td>{{ order.name }}</td>
                       <td>{{ order.price | currency}}</td>
@@ -112,6 +112,10 @@
               <pagination-controls class="my-pagination mat-body-1" (pageChange)="p = $event"></pagination-controls>
             </ng-template>
             <p class="info-text mat-body-1" *ngIf="orderService.orders.length <= 0">No orders added yet!</p>
+            <button mat-raised-button color="primary" class="btn right">
+              Continuar
+              <mat-icon>arrow_forward</mat-icon>
+            </button>
           </div>
         </mat-tab>
   
