@@ -32,6 +32,8 @@ import { EditProfileComponent } from './components/user-profile/edit-profile/edi
 import { FilterSupplierPipe } from './pipes/filter-supplier.pipe';
 import { ResetPasswordComponent } from './components/user/reset-password/reset-password.component';
 import { OrderComponent } from './components/order/order.component';
+import { ExternalComponent } from './components/external/external.component';
+import { FilterExternalPipe } from './pipes/filter-external.pipe';
 
 @NgModule({
     declarations: [
@@ -52,7 +54,9 @@ import { OrderComponent } from './components/order/order.component';
         FilterSupplierPipe,
         ResetPasswordComponent,
         OrderComponent,
-        FilterOrderPipe
+        FilterOrderPipe,
+        ExternalComponent,
+        FilterExternalPipe 
     ],
     imports: [
         BrowserModule,

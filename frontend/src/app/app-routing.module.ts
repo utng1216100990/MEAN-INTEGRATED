@@ -6,6 +6,7 @@ import { PhotosComponent } from './components/photos/photos.component';
 import { HomeComponent } from './components/home/home.component';
 import { SuppliersComponent } from './components/suppliers/suppliers.component';
 import { InternalComponent } from './components/internal/internal.component';
+import { ExternalComponent } from './components/external/external.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { OrderComponent } from './components/order/order.component';
 import { SignUpComponent } from './components/user/sign-up/sign-up.component';
@@ -37,6 +38,7 @@ const routes: Routes = [
   { path: 'photos', component: PhotosComponent, canActivate: [AuthGuard] },
   { path: 'suppliers', component: SuppliersComponent, canActivate: [AuthGuard] },
   { path: 'internal', component: InternalComponent, canActivate: [AuthGuard] },
+  { path: 'external', component: ExternalComponent, canActivate: [AuthGuard] },
   { path: 'menu', component: MenuComponent, canActivate: [AuthGuard] },
   { path: 'order', component: OrderComponent, canActivate: [AuthGuard] },
   { path: 'home', component: HomeComponent },

@@ -44,6 +44,7 @@ app.use('/api/suppliers/', require('./routes/supplier.routes'));
 app.use('/api/internal/', require('./routes/internal.routes'));
 app.use('/api/menus/', require('./routes/menu.routes'));
 app.use('/api/orders/', require('./routes/order.routes'));
+app.use('/api/external/', require('./routes/external.routes'));
 
 // Static Files
 app.use(express.static(path.join(__dirname, 'public/dist')));
